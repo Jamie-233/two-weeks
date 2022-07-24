@@ -5,46 +5,46 @@
  */
 
 export interface ILinkedListNode {
-    value: number,
-    next?: ILinkedListNode
+    value: number;
+    next?: ILinkedListNode;
 }
 
 export function reverseLinkedList(listNode: ILinkedListNode): ILinkedListNode {
     // statement three point
-    let prevNode: ILinkedListNode | undefined = undefined
-    let curNode: ILinkedListNode | undefined = undefined
-    let nextNode:ILinkedListNode | undefined = listNode
+    let prevNode: ILinkedListNode | undefined = undefined;
+    let curNode: ILinkedListNode | undefined = undefined;
+    let nextNode: ILinkedListNode | undefined = listNode;
 
-    while(nextNode) {
-        if(curNode && !prevNode) {
-            delete curNode.next
+    while (nextNode) {
+        if (curNode && !prevNode) {
+            delete curNode.next;
         }
 
         // middle
-        if(curNode && prevNode) {
-            curNode.next = prevNode
+        if (curNode && prevNode) {
+            curNode.next = prevNode;
         }
 
         // move backward
-        prevNode = curNode
-        curNode = nextNode
-        nextNode = nextNode?.next
+        prevNode = curNode;
+        curNode = nextNode;
+        nextNode = nextNode?.next;
     }
 
     // handle single linked list
-    if(prevNode)  {
+    if (prevNode) {
         // nextNode is null
-        curNode!.next = prevNode
+        curNode!.next = prevNode;
     }
 
-    return curNode!
+    return curNode!;
 }
 
 /**
  * @desc according to array create linked list
- * @param arr 
+ * @param arr
  */
- export function createLinkedList(arr: number[]): ILinkedListNode {
+export function createLinkedList(arr: number[]): ILinkedListNode {
     const length = arr.length;
 
     if (length === 0) throw new Error('arr is empty');
@@ -67,14 +67,13 @@ export function reverseLinkedList(listNode: ILinkedListNode): ILinkedListNode {
     for (let i = length - 2; i >= 0; i--) {
         currentNode = {
             value: arr[i],
-            next: currentNode
-        }
+            next: currentNode,
+        };
     }
 
     return currentNode;
 }
 
-const arr = [100, 200, 300]
-const ls = createLinkedList(arr)
-
-console.log(reverseLinkedList(ls))
+const arr = [100, 200, 300];
+const ls = createLinkedList(arr);
+console.log(reverseLinkedList(ls));
