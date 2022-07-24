@@ -69,3 +69,31 @@ export class MyQueue {
 
 // console.log(q.delete());
 // console.log(q.length);
+
+// performance test
+
+const q1 =  new MyQueue()
+
+console.time('queue with linked list')
+
+for(let i =  0; i < 10* 10000; i++) {
+    q1.add(i);
+}
+for(let i =  0; i < 10* 10000; i++) {
+    q1.delete();
+}
+
+console.timeEnd('queue with linked list') // 3 ms
+
+const q2 = []
+
+console.time('queue with array')
+
+for(let i =  0; i < 10* 10000; i++) {
+    q2.push(i);
+}
+for(let i =  0; i < 10* 10000; i++) {
+    q2.shift();
+}
+
+console.timeEnd('queue with array') // 390 ms
